@@ -13,7 +13,7 @@ function Home() {
   return (
     <Container>
       <Row>
-        <Col sm={12}>
+        <Col md= {12}>
           <h2 className="text-center">Welcome to Exchanging Hands!</h2>
         </Col>
       </Row>

@@ -13,6 +13,7 @@ export default {
   addSellItem: function (itemData) {
     return axios.post("/api/items", itemData);
   },
+  
   itemData: (itemData) => {
     return axios.get("/api/items", itemData);
   },

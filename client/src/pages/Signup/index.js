@@ -49,7 +49,7 @@ function Signup() {
 
   return (
     <Container>
-      <Modal show={show} onHide={() => setShow(false)}>
+      <Modal backdrop="static" show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Signup Feedback</Modal.Title>
         </Modal.Header>
@@ -120,7 +120,7 @@ function Signup() {
             </Col>
           </Row>
           <Row>
-            <Col md={{ span: 2, offset: 1 }}>
+            <Col md={{ span: 2, offset: 2 }}>
               <Button variant="primary" type="submit" onClick={signUpUser}>
                 Sign Up
               </Button>
