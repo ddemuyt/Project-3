@@ -49,7 +49,7 @@ function Login() {
 
   return (
     <Container>
-      <Modal show={show} onHide={() => setShow(false)}>
+      <Modal backdrop="static" show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Login Feedback</Modal.Title>
         </Modal.Header>
@@ -102,7 +102,7 @@ function Login() {
           </Row>
           
           <Row>
-            <Col md={{ span: 2, offset: 1 }}>
+            <Col md={{ span: 2, offset: 2 }}>
               <Button variant="primary" type="submit" onClick={LogUserIn}>
                 LOGIN
               </Button>

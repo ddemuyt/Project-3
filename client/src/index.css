@@ -10,6 +10,12 @@ body {
   background-repeat: no-repeat;
 }
 
+h2 {
+  font-size: 6em;
+  font-family: brush script mt;
+  color: forestgreen;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

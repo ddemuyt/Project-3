@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Modal } from 'react-bootstrap';
 import "./sell.css";
 import API from "../../utils/API";
@@ -13,8 +13,8 @@ function Sell() {
   const itemDescRef = useRef();
   const [imageUrl, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [itemPostingStatus, setItemPostingStatus] = useState(false);
-  const [show, setShow] = useState(false);
+  //const [itemPostingStatus, setItemPostingStatus] = useState(false);
+ // const [show, setShow] = useState(false);
   const [imageStatus, setImageStatus] = useState();
   const [imageShow, setImageShow] = useState(false);
 
@@ -48,30 +48,37 @@ function Sell() {
         item_quantity: itemQuantityRef.current.value,
         item_desc: itemDescRef.current.value,
         item_img_url: imageUrl
+        
       })
         .then(res => {
+         
+          // if (res.status === 200){
+          //  // setShow(true);
+          //   //setItemPostingStatus(true);
+          // }
           console.log("sell res", res);
-          if (res.status === 200){
-            setShow(true);
-            setItemPostingStatus(true);
-          }
         })
         .catch(err => {
           console.log(err);
-          setShow(true);
-          setItemPostingStatus(false);
+          // setShow(true);
+          // setItemPostingStatus(false);
         });
     } else {
       setImageStatus(false);
       setImageShow(true);
     }
 
+    itemNameRef.current.value="";
+    itemPriceRef.current.value="";
+    itemQuantityRef.current.value="";
+    itemDescRef.current.value="";
+    setImage("https://via.placeholder.com/90");
   }
 
-  const handleClose = () => {
-    setShow(false);
+  // const handleClose = () => {
+  //   setShow(false);
     
-  };
+  // };
 
   const modalClose = () => {
     setImageShow(false);
@@ -83,9 +90,9 @@ function Sell() {
      //  {state =>
        //       state[0].user ? */}
         <Container>
-          <Modal show={show} onHide={() => setShow(false)}>
+          {/* <Modal backdrop="static" show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Login Feedback</Modal.Title>
+          <Modal.Title>Uploading Feedback</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {itemPostingStatus
@@ -97,11 +104,11 @@ function Sell() {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
-      <Modal show={imageShow} onHide={() => setImageShow(false)}>
+      <Modal backdrop="static" show={imageShow} onHide={() => setImageShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Uploading Feedback</Modal.Title>
+          <Modal.Title>No Image Uploaded!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {imageStatus
@@ -116,8 +123,10 @@ function Sell() {
       </Modal>
 
           <Row>
+            <Col>
             {loading ? (<h3>Loading...</h3>)
-              : (<img src={imageUrl} alt="" style={{ width: "500px" }} />)}
+              : (<img src={imageUrl || "https://via.placeholder.com/300"} alt="item up for sale" style={{ width: "300px" }} />)}
+          </Col>
           </Row>
           <br />
           <Row>
