@@ -58,12 +58,6 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    
-    // this.setState({
-    //   items: JSON.parse(localStorage.getItem("cart")).cart,
-    // });
-    // console.log("set", this.state.items);
-    // let user_id = 1;
     API.displayCartItems()
     .then((resp) => {
       this.setState({ items: resp.data });

@@ -5,24 +5,13 @@ export default class Paypal extends Component {
     
     constructor(props) {
         super(props);
-/*        this.state = {
-          total: props.total,
-        };*/
-        // let data = JSON.parse(localStorage.getItem("cart"));
-        // console.log("data", data);
-      }
-
-      
-
+  }
     render() {
 
         let env = 'sandbox'; // you can set here to 'production' for production
         let currency = 'USD'; // or you can set this value from your props or state
-//        let total = this.state.total; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
+       let total = this.props.total; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
-//        console.log(this.state);
-//        console.log(this.state.total);
-
 
         const client = {
             sandbox:    "AXe1gVjrlRnCm-96TZf-XfREDEdJwl5rEWU-7xxUtzc_em6m6eGf8HvmwxIxLUc8uc02YHpJajqLF_Ps",
@@ -40,7 +29,7 @@ export default class Paypal extends Component {
                 env={env}
                 client={client} 
                 currency={currency} 
-                total={this.props.total} 
+                total={total} 
                 
                            
             />
