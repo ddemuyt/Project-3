@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Modal } from 'react-bootstrap';
 import "./sell.css";
 import API from "../../utils/API";
 import { useUserContext, Consumer } from "../../utils/GlobalState";
@@ -13,6 +13,11 @@ function Sell() {
   const itemDescRef = useRef();
   const [imageUrl, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [itemPostingStatus, setItemPostingStatus] = useState(false);
+  const [show, setShow] = useState(false);
+  const [imageStatus, setImageStatus] = useState();
+  const [imageShow, setImageShow] = useState(false);
+
   const uploadImage = async event => {
 
     const files = event.target.files;
@@ -44,19 +49,72 @@ function Sell() {
         item_desc: itemDescRef.current.value,
         item_img_url: imageUrl
       })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .then(res => {
+          console.log("sell res", res);
+          if (res.status === 200){
+            setShow(true);
+            setItemPostingStatus(true);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          setShow(true);
+          setItemPostingStatus(false);
+        });
     } else {
-      alert("Please add an image before submitting item to sell.");
+      setImageStatus(false);
+      setImageShow(true);
     }
 
   }
+
+  const handleClose = () => {
+    setShow(false);
+    
+  };
+
+  const modalClose = () => {
+    setImageShow(false);
+    
+  };
 
   return (
   //*  <Consumer>
      //  {state =>
        //       state[0].user ? */}
         <Container>
+          <Modal show={show} onHide={() => setShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login Feedback</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {itemPostingStatus
+            ? "Congratulations!! You have successfully posted an item for sale."
+            : "Something went wrong. Please try again."}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={imageShow} onHide={() => setImageShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Uploading Feedback</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {imageStatus
+            ? ""
+            : "Please upload an image."}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={modalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
           <Row>
             {loading ? (<h3>Loading...</h3>)
               : (<img src={imageUrl} alt="" style={{ width: "500px" }} />)}

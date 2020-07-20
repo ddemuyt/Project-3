@@ -70,12 +70,12 @@ function Signup() {
       ) : (
         <Container fluid="md">
           <Row>
-            <Col md={{ span: 3, offset: 4 }}>
+            <Col md={{ span: 3, offset: 1 }}>
               <h3>Signup Form</h3>
             </Col>
           </Row>
           <Row>
-            <Col md={{ span: 3, offset: 4 }}>
+            <Col md={{ span: 3, offset: 1 }}>
               <Form>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
@@ -120,7 +120,7 @@ function Signup() {
             </Col>
           </Row>
           <Row>
-            <Col md={{ span: 2, offset: 5 }}>
+            <Col md={{ span: 2, offset: 1 }}>
               <Button variant="primary" type="submit" onClick={signUpUser}>
                 Sign Up
               </Button>

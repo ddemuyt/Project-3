@@ -5,6 +5,9 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("../src/assets/images/motivation.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {
